@@ -2,14 +2,15 @@
 var start = null;
 var element = document.getElementById('test');
 element.style.position = 'absolute';
+var progress = 0;
 
 function step(timestamp) {
-    if (!start) start = timestamp;
-    var progress = timestamp - start;
-    element.style.left = Math.min(progress / 10, 200) + 'px';
-    if (progress < 2000) {
-        window.requestAnimationFrame(step);
+    if (progress < 50) {
+        progress = progress + 1;
     }
+    element.style.width = progress + '%';
+    element.innerHTML=progress + '%';
+    window.requestAnimationFrame(step);
 }
 
 window.requestAnimationFrame(step);
