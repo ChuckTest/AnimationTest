@@ -1,16 +1,14 @@
-//https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
-var start = null;
-var element = document.getElementById('test');
-element.style.position = 'absolute';
-var progress = 0;
+document.addEventListener("DOMContentLoaded", function (event) {
+    myFunction();
+});
 
-function step(timestamp) {
-    if (progress < 50) {
-        progress = progress + 1;
-    }
-    element.style.width = progress + '%';
-    element.innerHTML=progress + '%';
-    window.requestAnimationFrame(step);
+function myFunction() {
+    setInterval(moveFunction, 1000);
 }
 
-window.requestAnimationFrame(step);
+var left = 0;
+function moveFunction() {
+    var element = document.getElementById("test");
+    left = left + 1;
+    element.style.marginLeft = left + "px";
+}
