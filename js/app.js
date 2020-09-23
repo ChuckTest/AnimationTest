@@ -8,23 +8,27 @@ function myFunction() {
     refreshIntervalId = setInterval(moveFunction, 1000);
 }
 
-
-var bodyHeight;
-var bodyWidth;
+var maxMarginTop;
+var maxMarginLeft;
 function getBodySize() {
     var element = document.getElementsByTagName("BODY")[0];
     var positionInfo = element.getBoundingClientRect();
-    bodyHeight = positionInfo.height;
-    bodyWidth = positionInfo.width;
+    var bodyHeight = positionInfo.height;
+    var bodyWidth = positionInfo.width;
     console.log(bodyHeight);
     console.log(bodyWidth);
+
+    var div = document.getElementById("test");
+    var divPositionInfo = div.getBoundingClientRect();
+    maxMarginLeft = bodyWidth - divPositionInfo.width;
+    maxMarginTop = bodyHeight - divPositionInfo.height;
 }
 
 var margin = 0;
 function moveFunction() {
     var element = document.getElementById("test");
     margin = margin + 10;
-    if (margin > bodyHeight || margin > bodyWidth) {
+    if (margin > maxMarginLeft || margin > maxMarginTop) {
         clearInterval(refreshIntervalId);
     }
     element.style.marginLeft = margin + "px";
